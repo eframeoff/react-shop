@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-const Pizza = ({ types, sizes, price, imageUrl }) => {
+const Pizza = ({ types, sizes, price, imageUrl, title }) => {
   const [count, setCount] = useState(0);
   const [sizeActive, setSizeActive] = useState(0);
   const [typeActive, setTypeActive] = useState(0);
@@ -9,7 +9,7 @@ const Pizza = ({ types, sizes, price, imageUrl }) => {
     <div className="pizza-block-wrapper">
       <div className="pizza-block">
         <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
-        <h4 className="pizza-block__title">Чизбургер-пицца</h4>
+        <h4 className="pizza-block__title">{title}</h4>
         <div className="pizza-block__selector">
           <ul>
             {types.map((value, index) => (

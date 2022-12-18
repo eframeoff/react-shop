@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
-const Categories = () => {
-  const [catActive, setCatActive] = useState();
+const Categories = ({ category, setCategory }) => {
+  console.log(category);
   const arr = [
     "Все",
     "Мясные",
@@ -16,8 +16,9 @@ const Categories = () => {
       <ul>
         {arr.map((value, index) => (
           <li
-            onClick={() => setCatActive(index)}
-            className={catActive === index ? "active" : ""}
+            // onClick={() => setCatActive(index)}
+            onClick={() => setCategory(index)}
+            className={category === index ? "active" : ""}
             key={index}
           >
             {value}

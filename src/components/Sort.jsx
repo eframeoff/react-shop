@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-const Sort = () => {
-  const arr = ["популярности", "цене", "алфавиту"];
+const Sort = ({ sort, setSort }) => {
+  const arr = [
+    { name: "популярности", sort: "rating" },
+    { name: "цене", sort: "price" },
+    { name: "алфавиту", sort: "title" },
+  ];
   const [popupVis, setPopupVis] = useState(false);
-  const [sortSelected, setSortSelected] = useState(0);
-  const sortName = arr[sortSelected];
-  const onSortSelected = (index) => {
-    setSortSelected(index);
+  const sortName = sort.name;
 
-    setPopupVis(false);
-  };
   return (
     <div className="sort">
       <div className="sort__label">
@@ -33,10 +32,13 @@ const Sort = () => {
             {arr.map((value, index) => (
               <li
                 key={index}
-                onClick={() => onSortSelected(index, value)}
-                className={sortSelected === index ? "active" : ""}
+                onClick={() => {
+                  setSort(value);
+                  setPopupVis(false);
+                }}
+                className={sort.sort === value.sort ? "active" : ""}
               >
-                {value}
+                {value.name}
               </li>
             ))}
           </ul>
