@@ -5,14 +5,16 @@ import Pizza from "../components/Pizza";
 import { PizzaSkeleton } from "../components/Skeleton";
 import Sort from "../components/Sort";
 import Pagination from "../components/Pagination/Pagination";
+import { useContext } from "react";
+import { SearchContext } from "../App";
 
-const Main = ({ search }) => {
+const Main = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [category, setCategory] = useState(0);
   const [sort, setSort] = useState({ name: "популярности", sort: "rating" });
   const [page, setPage] = useState(1);
-
+  const { search } = useContext(SearchContext);
   console.log(page);
   useEffect(() => {
     setIsLoading(true);
