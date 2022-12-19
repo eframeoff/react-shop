@@ -33,6 +33,7 @@ const Sort = ({ sort, setSort }) => {
               <li
                 key={index}
                 onClick={() => {
+                  console.log(value);
                   setSort(value);
                   setPopupVis(false);
                 }}

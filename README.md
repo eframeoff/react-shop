@@ -5,6 +5,7 @@
 ### Используемые технологии
 
 - ReactJS 18
+- Redux Toolkit
 - React Router v6 (навигация)
 - Fetch (отправка запроса на бэкенд)
 - Mockapi.io (тестовый бэкенд)
