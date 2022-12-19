@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-const Pizza = ({ types, sizes, price, imageUrl, title }) => {
+const Pizza = ({ types, types2, sizes, price, imageUrl, title }) => {
   const [count, setCount] = useState(0);
   const [sizeActive, setSizeActive] = useState(0);
   const [typeActive, setTypeActive] = useState(0);
+  const [type2Active, setType2Active] = useState(0);
 
-  const typeNames = ["тонкое", "традиционное"];
+  const typeNames = ["соевый соус", "нет"];
+  const type2Names = ["имбирь", "нет"];
+
   return (
     <div className="pizza-block-wrapper">
       <div className="pizza-block">
@@ -23,13 +26,24 @@ const Pizza = ({ types, sizes, price, imageUrl, title }) => {
             ))}
           </ul>
           <ul>
+            {types2.map((value, index) => (
+              <li
+                onClick={() => setType2Active(index)}
+                className={type2Active === index ? "active" : ""}
+                key={index}
+              >
+                {type2Names[value]}
+              </li>
+            ))}
+          </ul>
+          <ul>
             {sizes.map((value, index) => (
               <li
                 onClick={() => setSizeActive(index)}
                 className={sizeActive === index ? "active" : ""}
                 key={index}
               >
-                {value} см.
+                {value} кг.
               </li>
             ))}
           </ul>

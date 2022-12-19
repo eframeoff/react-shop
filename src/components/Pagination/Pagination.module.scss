@@ -1,0 +1,29 @@
+@import "../../scss/variables";
+
+.pagination {
+  li {
+    display: inline-block;
+    a {
+      margin-right: 5px;
+      padding: 10px;
+      border: 1px solid $blue;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    &:hover {
+      a {
+        color: white;
+        background-color: $blue;
+      }
+    }
+  }
+}
+
+:global {
+  .selected {
+    a {
+      color: white;
+      background-color: $blue;
+    }
+  }
+}

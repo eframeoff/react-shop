@@ -2,14 +2,15 @@ import React from "react";
 import { useState } from "react";
 
 const Categories = ({ category, setCategory }) => {
+  const [catActive, setCatActive] = useState();
   console.log(category);
   const arr = [
     "Все",
-    "Мясные",
-    "Вегетарианская",
-    "Гриль",
-    "Острые",
-    "Закрытые",
+    "филадельфия",
+    "калифорния",
+    "юта",
+    "вегетерианские",
+    "темпура",
   ];
   return (
     <div className="categories">

@@ -1,0 +1,21 @@
+.root {
+  position: relative;
+}
+
+.input {
+  height: 30px;
+  width: 250px;
+  border: 1px solid grey;
+  //   border-radius: 10px;
+  opacity: 0.5;
+  padding: 15px 15px;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  font-size: 24px;
+  right: 10px;
+  opacity: 0.5;
+  cursor: pointer;
+}
