@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const Categories = ({ category, setCategory }) => {
   const [catActive, setCatActive] = useState();
-  console.log(category);
   const arr = [
     "Все",
     "филадельфия",

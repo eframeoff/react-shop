@@ -1,15 +1,27 @@
-import React, { useState } from "react";
-const Sort = ({ sort, setSort }) => {
-  const arr = [
-    { name: "популярности", sort: "rating" },
-    { name: "цене", sort: "price" },
-    { name: "алфавиту", sort: "title" },
-  ];
-  const [popupVis, setPopupVis] = useState(false);
-  const sortName = sort.name;
+import React, { useState, useRef, useEffect } from "react";
 
+export const arr = [
+  { name: "популярности", sort: "rating" },
+  { name: "цене", sort: "price" },
+  { name: "алфавиту", sort: "title" },
+];
+const Sort = ({ sort, setSort }) => {
+  useEffect(() => {
+    const clickOut = (e) => {
+      !e.path.find((i) => i === sortRef.current) && setPopupVis(false);
+    };
+    document.addEventListener("click", clickOut);
+
+    return () => {
+      document.body.removeEventListener("click", clickOut);
+    };
+  }, []);
+  const [popupVis, setPopupVis] = useState(false);
+  let sortName;
+  sortName = sort.name;
+  const sortRef = useRef();
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
@@ -33,7 +45,6 @@ const Sort = ({ sort, setSort }) => {
               <li
                 key={index}
                 onClick={() => {
-                  console.log(value);
                   setSort(value);
                   setPopupVis(false);
                 }}
