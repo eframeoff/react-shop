@@ -8,8 +8,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
-  console.log(items);
-
+  const totalCount = items.reduce((sum, item) => item.count + sum, 0);
   const clearCart = () => {
     dispatch(removeItems());
   };
@@ -100,7 +99,7 @@ const Cart = () => {
           <div class="cart__bottom-details">
             <span>
               {" "}
-              Всего сетов: <b> {items.length} шт.</b>{" "}
+              Всего сетов: <b> {totalCount} шт.</b>{" "}
             </span>
             <span>
               {" "}

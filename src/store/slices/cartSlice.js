@@ -13,25 +13,47 @@ export const cartSlice = createSlice({
       const findItem = state.items.find(
         (item) => item.id === action.payload.id
       );
-      console.log(findItem);
-      // if (findItem) {
-      //     state.items.
-      // }
-      state.items.push(action.payload);
-      state.totalPrice = state.items.reduce((sum, obj) => {
-        return obj.price + sum;
-      }, 0);
+      if (findItem) {
+        findItem.count++;
+        state.totalPrice = state.items.reduce((sum, obj) => {
+          return obj.price * obj.count + sum;
+        }, 0);
+      } else {
+        state.items.push({ ...action.payload, count: 1 });
+        state.totalPrice = state.items.reduce((sum, obj) => {
+          return obj.price * obj.count + sum;
+        }, 0);
+      }
+
+      //   state.items.counter++;
     },
     removeItem: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+      console.log(action.payload);
+      state.items = state.items.filter((item) => item.id !== action.payload.id);
+      state.totalPrice = state.totalPrice - action.payload.price;
     },
     removeItems: (state) => {
-      console.log("ssss");
       state.items = [];
       state.totalPrice = 0;
+    },
+
+    minusItem: (state, action) => {
+      const findItem = state.items.find((item) => item.id === action.payload);
+      findItem.count--;
+      state.totalPrice = state.items.reduce((sum, obj) => {
+        return obj.price * obj.count + sum;
+      }, 0);
+    },
+    plusItem: (state, action) => {
+      const findItem = state.items.find((item) => item.id === action.payload);
+      findItem.count++;
+      state.totalPrice = state.items.reduce((sum, obj) => {
+        return obj.price * obj.count + sum;
+      }, 0);
     },
   },
 });
 
-export const { addItem, removeItem, removeItems } = cartSlice.actions;
+export const { addItem, removeItem, removeItems, minusItem, plusItem } =
+  cartSlice.actions;
 export default cartSlice.reducer;

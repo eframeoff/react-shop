@@ -22,7 +22,6 @@ const Sort = ({ sort, setSort }) => {
   console.log(sort);
   let sortName = sort.name;
   const sortRef = useRef();
-  // console.log(sortRef);
   return (
     <div ref={sortRef} className="sort">
       <div className="sort__label">
