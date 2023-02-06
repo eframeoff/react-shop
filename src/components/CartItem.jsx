@@ -1,18 +1,22 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { removeItem } from "../store/slices/cartSlice";
 
-const CartItem = () => {
+const CartItem = ({ id, title, price, size, type, type2, imageUrl }) => {
+  const deleteItem = (id) => {
+    dispatchEvent(removeItem(id));
+  };
+
   return (
     <div class="cart__item">
       <div class="cart__item-img">
-        <img
-          class="pizza-block__image"
-          src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-          alt="Pizza"
-        />
+        <img class="pizza-block__image" src={imageUrl} alt="Pizza" />
       </div>
       <div class="cart__item-info">
-        <h3>Сырный цыпленок</h3>
-        <p>тонкое тесто, 26 см.</p>
+        <h3>{title}</h3>
+        <p>
+          {type}, {type2}, {size} кг
+        </p>
       </div>
       <div class="cart__item-count">
         <div class="button button--outline button--circle cart__item-count-minus">
@@ -33,7 +37,7 @@ const CartItem = () => {
             ></path>
           </svg>
         </div>
-        <b>2</b>
+        <b>1</b>
         <div class="button button--outline button--circle cart__item-count-plus">
           <svg
             width="10"
@@ -54,9 +58,9 @@ const CartItem = () => {
         </div>
       </div>
       <div class="cart__item-price">
-        <b>770 ₽</b>
+        <b>{price}</b>
       </div>
-      <div class="cart__item-remove">
+      <div class="cart__item-remove" onClick={() => deleteItem(id)}>
         <div class="button button--outline button--circle">
           <svg
             width="10"
