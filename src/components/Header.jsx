@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/img/sushi-logo.svg";
 import Search from "./Search/Search";
@@ -7,6 +7,15 @@ import cart from "../assets/img/cart.svg";
 
 const Header = () => {
   const { items, totalPrice } = useSelector((state) => state.cart);
+  const isMount = useRef(false);
+  useEffect(() => {
+    if (isMount.current) {
+      console.log(items);
+      localStorage.setItem("cartItems", JSON.stringify(items));
+      localStorage.setItem("totalPrice", totalPrice);
+    }
+    isMount.current = true;
+  }, [items]);
   return (
     <div className="header">
       <div className="container">
