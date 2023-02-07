@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../store/slices/cartSlice";
 import pl from "../assets/img/pl.svg";
-const Pizza = ({ id, types, types2, sizes, price, imageUrl, title }) => {
+const Pizza = ({ id, types, types2, sizes, price, imageUrl, title, count }) => {
   const dispatch = useDispatch();
-  const [count, setCount] = useState(0);
+  const cartItem = useSelector((state) =>
+    state.cart.items.find((item) => item.id === id)
+  );
+  const countItem = cartItem ? cartItem.count : 0;
   const [sizeActive, setSizeActive] = useState(0);
   const [typeActive, setTypeActive] = useState(0);
   const [type2Active, setType2Active] = useState(0);
-  console.log(price);
-  console.log(sizeActive);
-  console.log(typeActive);
 
-  const onClickAdd = (count) => {
-    setCount(count + 1);
+  const onClickAdd = () => {
     const item = {
       id,
       title,
@@ -77,7 +76,7 @@ const Pizza = ({ id, types, types2, sizes, price, imageUrl, title }) => {
           >
             <img src={pl} alt="" />
             <span>Добавить</span>
-            <i>{count}</i>
+            <i>{countItem}</i>
           </button>
         </div>
       </div>
