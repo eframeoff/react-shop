@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../store/slices/cartSlice";
-import pl from "../assets/img/pl.svg";
+
+import { SvgPlus } from "../components/SvgItems";
 const Pizza = ({ id, types, types2, sizes, price, imageUrl, title, count }) => {
   const dispatch = useDispatch();
   const cartItem = useSelector((state) =>
@@ -74,7 +75,7 @@ const Pizza = ({ id, types, types2, sizes, price, imageUrl, title, count }) => {
             onClick={() => onClickAdd(count)}
             className="button button--outline button--add"
           >
-            <img src={pl} alt="" />
+            <SvgPlus />
             <span>Добавить</span>
             <i>{countItem}</i>
           </button>

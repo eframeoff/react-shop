@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import sortSvg from "../assets/img/sort.svg";
+// import sortSvg from "../assets/img/sort.svg";
+import { SvgSort } from "./SvgItems";
 export const arr = [
   { name: "популярности", sort: "rating" },
   { name: "цене", sort: "price" },
@@ -25,7 +26,7 @@ const Sort = ({ sort, setSort }) => {
   return (
     <div ref={sortRef} className="sort">
       <div className="sort__label">
-        <img src={sortSvg} alt="" />
+        <SvgSort />
         <b>Сортировка по:</b>
         <span onClick={() => setPopupVis(!popupVis)}>{sortName}</span>
       </div>
