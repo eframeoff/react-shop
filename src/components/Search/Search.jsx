@@ -3,8 +3,6 @@ import { SearchContext } from "../../App";
 import classes from "./Search.module.scss";
 import debounce from "lodash.debounce";
 
-const testDeb = debounce(() => {}, 2000);
-
 const Search = () => {
   const findText = useCallback(
     debounce((val) => {

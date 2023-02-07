@@ -32,7 +32,7 @@ const CartItem = ({ id, title, price, size, type, type2, imageUrl, count }) => {
         <button
           disabled={count === 1}
           onClick={() => minusIt()}
-          class="button button--outline button--circle cart__item-count-minus"
+         class={ count !== 1 ? "button button--outline button--circle cart__item-count-minus" : "button button-disabled button--outline button--circle cart__item-count-minus"}
         >
           <SvgMinus />
         </button>

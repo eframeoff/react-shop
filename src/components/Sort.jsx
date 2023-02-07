@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 // import sortSvg from "../assets/img/sort.svg";
 import { SvgSort } from "./SvgItems";
+
 export const arr = [
   { name: "популярности", sort: "rating" },
   { name: "цене", sort: "price" },
   { name: "алфавиту", sort: "title" },
 ];
-const Sort = ({ sort, setSort }) => {
+const Sort = React.memo(({ sort, setSort }) => {
   useEffect(() => {
     console.log("mount");
     const clickOut = (e) => {
@@ -50,6 +51,6 @@ const Sort = ({ sort, setSort }) => {
       )}
     </div>
   );
-};
+});
 
 export default Sort;

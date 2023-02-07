@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -28,9 +28,9 @@ const Main = () => {
 
   const { search } = useContext(SearchContext);
 
-  const setCategory = (val) => {
+  const setCategory = useCallback((val) => {
     dispatch(setCat(val));
-  };
+  }, []);
 
   useEffect(() => {
     if (window.location.search) {
