@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const Categories = ({ category, setCategory }) => {
+const Categories = React.memo(({ category, setCategory }) => {
   const [catActive, setCatActive] = useState();
   const arr = [
     "Все",
@@ -27,6 +27,6 @@ const Categories = ({ category, setCategory }) => {
       </ul>
     </div>
   );
-};
+});
 
 export default Categories;

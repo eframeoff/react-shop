@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -13,13 +13,12 @@ import {
   Pagination,
 } from "../components";
 import { SearchContext } from "../App";
-import { setCat, setSor, setFilt } from "../store/slices/filterSlice";
+import { setCat, setFilt } from "../store/slices/filterSlice";
 
 const Main = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const sort = useSelector((state) => state.filter.sort);
   const category = useSelector((state) => state.filter.category);
 
   const [items, setItems] = useState([]);
@@ -29,13 +28,9 @@ const Main = () => {
 
   const { search } = useContext(SearchContext);
 
-  // const setSort = (val) => {
-  //   dispatch(setSor(val));
-  // };
-
-  const setCategory = (val) => {
+  const setCategory = useCallback((val) => {
     dispatch(setCat(val));
-  };
+  }, []);
 
   useEffect(() => {
     if (window.location.search) {
@@ -75,12 +70,6 @@ const Main = () => {
   const skeletons = [...new Array(6)].map((_, index) => (
     <PizzaSkeleton key={index} />
   ));
-
-  // Организовал поиск через фильтр
-
-  // const sushisWithSearch = items
-  //   .filter((item) => item.title.toLowerCase().includes(search))
-  //   .map((pizza) => <Pizza key={pizza.id} {...pizza}></Pizza>);
 
   const sushis = items.map((pizza) => (
     <Pizza key={pizza.id} {...pizza}></Pizza>
